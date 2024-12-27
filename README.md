@@ -38,6 +38,38 @@ The project consists of two main components:
 - Backend: Medusa-powered e-commerce engine
 - Frontend: Next.js-based storefront
 
+## Project Structure
+
+The project follows a modular architecture with separate directories for backend, frontend, and configuration:
+
+```
+.
+├── README.md
+├── LICENSE.md
+├── .editorconfig
+├── .gitignore
+├── compose.yaml
+├── compose.yaml.dist
+├── server.Dockerfile
+├── storefront.Dockerfile
+├── backend-develop.sh
+├── run.sh
+├── medusa-store/
+│   ├── src/
+│   ├── package.json
+│   └── medusa-config.js
+└── medusa-store-storefront/
+    ├── src/
+    ├── public/
+    └── package.json
+```
+
+- `medusa-store/`: Contains the Medusa backend implementation
+- `medusa-store-storefront/`: Houses the Next.js frontend application
+- `compose.yaml`: Docker Compose configuration for containerized deployment
+- `*.Dockerfile`: Container definitions for backend and frontend
+- `*.sh`: Utility scripts for development and deployment
+
 ## Development
 
 Instructions for local development setup will be provided.
