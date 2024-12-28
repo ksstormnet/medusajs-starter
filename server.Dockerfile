@@ -11,8 +11,9 @@ RUN apt-get update && apt-get upgrade -y && \
     npm install --global npm@11.0.0 && \
     npm install --loglevel=error && \
     npm run build
-##### TODO: figure out how we build this and get a dist folder
-FROM node:lts
+
+
+    FROM node:lts
 
 WORKDIR /app/medusa
 
@@ -29,9 +30,13 @@ RUN apt-get update && apt-get upgrade -y && \
     npm install --global @medusajs/medusa-cli@latest && \
     npm i --only=production
 
-COPY --from=builder /app/medusa/dist ./dist
+COPY --from=builder /app/medusa/.medusa/server/ ./dist
 
 EXPOSE 9000
 
+# ENTRYPOINT ["./develop.sh", "start"]
+## this came from the template docker rep, but I don't think it's right.
+
 COPY run.sh /run.sh
 CMD ["bash", "/run.sh"]
+# using this to keep the server container running for manual work inside it
