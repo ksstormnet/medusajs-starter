@@ -9,7 +9,7 @@ services:
             - 9000:9000
         depends_on:
             - postgres
-            - redis        
+            - redis
         environment:
             DATABASE_URL: postgres://postgres:postgres@postgres:5432/medusa-docker
             NODE_ENV: production
@@ -25,7 +25,7 @@ services:
             POSTGRES_PASSWORD: postgres
             POSTGRES_DB: medusa-docker
 
-    redis:      
+    redis:
         image: redis:6
         container_name: medusajs-redis
         hostname: redis

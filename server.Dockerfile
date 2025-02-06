@@ -12,8 +12,7 @@ RUN apt-get update && apt-get upgrade -y && \
     npm install --loglevel=error && \
     npm run build
 
-
-    FROM node:lts
+FROM node:lts
 
 WORKDIR /app/medusa
 
