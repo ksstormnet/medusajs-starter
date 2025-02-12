@@ -1,45 +1,12 @@
-name: medusajs
 services:
-    server:
-        image: reg.ksstorm.dev/medusajs-server:latest
-        container_name: medusajs-server
-        hostname: server
-        restart: always
-        ports:
-            - 9000:9000
-        depends_on:
-            - postgres
-            - redis
-        environment:
-            DATABASE_URL: postgres://postgres:postgres@postgres:5432/medusa-docker
-            NODE_ENV: production
-            STORE_CORS: http://localhost
+  medusajs:
+    image: reg.ksstorm.dev/node-postgres:0.0.4
+    container_name: medusajs-server
+    hostname: server
+    restart: always
+    ports:
+     - 9000:9000
+    environment:
+     - DATABASE_URL=postgres://medusajs:medusajs@localhost:5432/medusadb
+     - REDIS_URL=redis://localhost:6379
 
-    postgres:
-        image: postgres:12
-        container_name: medusajs-postgres
-        hostname: postgres
-        restart: always
-        environment:
-            POSTGRES_USER: postgres
-            POSTGRES_PASSWORD: postgres
-            POSTGRES_DB: medusa-docker
-
-    redis:
-        image: redis:6
-        container_name: medusajs-redis
-        hostname: redis
-        restart: always
-
-    storefront:
-        image: reg.ksstorm.dev/medusajs-storefront:latest
-        ports:
-            - 80:80
-        environment:
-            - NODE_ENV=production
-            - API_URL=http://api:3000
-        container_name: medusajs-storefront
-        hostname: storefront
-        restart: always
-        depends_on:
-            - server
